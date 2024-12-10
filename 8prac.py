@@ -1,44 +1,30 @@
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
-
-class BinaryTree:
-    def __init__(self):
-        self.root = None
-
-    def insert(self, value):
-        new_node = Node(value)
-        if self.root is None:
-            self.root = new_node
-            return
-
-        current = self.root
-        while True:
-            if value < current.value:
-                if current.left is None:
-                    current.left = new_node
-                    return
-                else:
-                    current = current.left
-            else:
-                if current.right is None:
-                    current.right = new_node
-                    return
-                else:
-                    current = current.right
-
-    def search(self, value):
-        current = self.root
-        while current:
-            if value == current.value:
-                return current
-            elif value < current.value:
-                current = current.left
-            else:
-                current = current.right
-        return 0
-
-    def delete(self, value):
-        self.root = self._delete_node(self.root, value)
+class Library:
+    def __init__(self, name, max_books = 5):
+            self.name = name
+            self.max_books = max_books
+            self.books = []
+    
+    def getattribute(self, name):
+        return super().getattribute(name)
+    
+    def __getattr__(self, name):
+        return f"Атрибут {name} не существует"
+    
+    def __setattr__(self, name):
+        super().__setattr__(name)
+        
+    def add_book(self, book):
+        if len(self.books) < self.max_books:
+            self.books.append(book)
+        else:
+            print("ahuel?")
+        
+    def remove_book(self, book):
+        if(book in self.books):
+            self.books.remove(book)
+            
+    def list_books(self, books):
+        return(books)
+            
+    def __delattr__(self, name):
+        super().__delattr__(name)
